@@ -1,4 +1,5 @@
 {% load game_tags %}
+{% load static %}
 
 {% get_video  as video %}
 
@@ -28,7 +29,7 @@
         </div>
     </div>
 </div>
-
+<script type="module" src="{% static 'game/js/video.min.js' %}"></script>
 <script>
 const v = document.getElementById("my-video");
 const s = document.getElementById("source_video");
