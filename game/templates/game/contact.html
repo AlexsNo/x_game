@@ -1,0 +1,48 @@
+{% extends 'game/base.html'  %}
+{% load static %}
+
+{% block title %}
+<title>{{title}}</title>
+{% endblock %}
+
+{% block content %}
+<main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-12 col-lg-7 col-xl-6 mx-auto">
+                    <div  style="margin-left: calc(50% - 50vw);margin-right: calc(50% - 50vw);position: relative; max-width: 100vw;width: auto; "class="div">
+                        <img style="display: block;object-fit: cover;height: 800px;max-width: 100%;width: 100%;" src="{% static 'game/img/contact_walp.jpg' %}" class="img-fluid" alt="">
+                        <div style="position: absolute;bottom:0;left:0;right:0;top:0;overflow: hidden;width: 100%;">
+                            <p style="position: absolute;left: 50%;top: 50%; font-size: 80px;transform: translate(-45%, -50%)" class="text-white text-center">Контакты</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                         <p style="font-size:20px">Я должен объяснить вам, как родилась вся эта ошибочная идея осуждения удовольствия и восхваления боли, и я дам вам полный отчет о системе и изложу действительные учения великого исследователя истины, мастера-строителя человечества.</p>
+                         <p style="font-size:20px">Спасибо за сообщения которые вы оставите.</p>
+                         <form id="contact" action="/action_page.php" class="  pb-5">
+                                <div class="mb-5 mt-3">
+                                  <div class="row">
+                                    <div class="col-4">
+                                        <input type="name" class="form-control" id="name"  name="name " placeholder="Имя">
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="password" class="form-control" id="pwd" name="pswd" placeholder="Почта">
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="password" class="form-control" id="pwd" name="pswd" placeholder="Тема">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="mb-5 mt-3">
+                                    <textarea  class="form-control" rows="5" id="comment" name="text" placeholder="Напиши тут что-то"></textarea>
+                                </div>
+                                <button style="width: 100%; border-radius: 10px; background-color: var(--green_header); height:50px" type="submit" class="btn btn-primary ">Отправить сообщение</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </main>
+{% endblock %}

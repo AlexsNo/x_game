@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/png" rel="shortcut icon" href="{% static 'game/img/favicon.jpg' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'game/css/style.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'game/css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'game/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'game/css/photoswipe.css' %}">
+     <link type="text/css" rel="stylesheet" href="{% static 'game/css/video-js.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'game/css/flickity.css' %}" media="screen">
+    <script src="{% static 'game/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'game/js/x_game_imageLoaded.js' %}"></script>
+    <script src="{% static 'game/js/popper.min.js' %}"></script>
+    <script src="{% static 'game/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'game/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'game/js/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'game/js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'game/js/infinite-scroll.pkgd.min.js' %}"></script>
+    <script type="module" src="{% static 'game/js/photoswipe.esm.js' %}"></script>
+    <script type="module" src="{% static 'game/js/photoswipe-lightbox.esm.js' %}"></script>
+    <script type="module" src="{% static 'game/js/video.min.js' %}"></script>
+    {% block title %}
+    {% endblock %}
+</head>
+<body>
+ {% include 'game/base_header.html' %}
+ {% block content %}
+ {% endblock  %}
+<div class="page-load-status">
+  <div class="loader-ellips infinite-scroll-request">
+    <span class="loader-ellips__dot"></span>
+    <span class="loader-ellips__dot"></span>
+    <span class="loader-ellips__dot"></span>
+    <span class="loader-ellips__dot"></span>
+  </div>
+  <p class="infinite-scroll-last">Контент закончился (</p>
+  <p class="infinite-scroll-error">Нет больше страниц для отображения</p>
+</div>
+{% if page_obj.has_next %}
+    <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
+ {% endif %}
+ {% if page_obj.has_next %}
+<div class="container">
+<div class="row text-center">
+    <div class="col-12">
+        <p>
+            <i style="font-size:20px;cursor:pointer;" class="icon-down-circled view-more-button"></i>
+        </p>
+    </div>
+</div>
+</div>
+ {% endif %}
+ {% include 'game/base_footer.html' %}
+</body>
+<script src="{% static 'game/js/x_game_pagination.js' %}"></script>
+<script src="{% static 'game/js/x_game_DropdownMenu.js' %}"></script>
+<script type="module" src="{% static 'game/js/x_game_PhotoSwipe.js' %}"></script>
+<script src="{% static 'game/js/game_hover.js' %}"></script>
+<script>
+    $(document).ready(function() {
+    $("#comment").submit(function() {
+        $.ajax({
+            url: "{{title.get_absolute_url}}",
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(data) {
+            $('#comment_real').load(' #comment_real', function(){$(this).children().unwrap()})
+
+            }
+        });
+    return false;
+    });
+});
+
+</script>
+
+</html>

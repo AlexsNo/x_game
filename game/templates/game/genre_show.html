@@ -1,0 +1,32 @@
+{% extends 'game/base.html' %}
+
+{% block title %}
+<title>{{title}}</title>
+{% endblock %}
+{% block content %}
+  <main2>
+        <div id ="category_show" class="container-fluid">
+            <a href="#"><p class=" fw-bold mt-4" style="font-size: 30px;">Категории</p></a>
+            <div class="row text-center infinity-container ">
+                 {% for i in genre_object %}
+                <div class="col-12 col-md-6 col-xl-3 mb-4 gx-1 infinity-post  ">
+                    <div style="border:none;border-radius: 20px; padding-right: 10%; "  class="card">
+                        <a href="{{i.get_absolute_url}}"> <img style="display:block; height:200px;border-radius: 20px;object-fit: cover;" class="card-img-top"  src="{{i.pathPhoto.url}}" > </a>
+                        <div style="background-color: white;" class="card-body p-1">
+                            <a href="{{i.get_absolute_url}}"><p class="card-title fw-bold">{{i}} <span style="border-radius: 50;" class="badge bg-primary">
+                                {% for k,v in Genre_count.items %}
+                                    {% if i.slug == k %}
+                                        {{v}}
+                                    {% endif %}
+                                {% endfor %}
+                            </span> </p></a>
+                          </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </main2>
+
+{% endblock %}

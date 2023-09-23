@@ -1,0 +1,108 @@
+{% extends 'game/base.html' %}
+{% load game_tags %}
+{% block title %}
+<title>{{title}}</title>
+{% endblock %}
+
+ {% block content %}
+<main4>
+        <div id="main4_content" style="padding-top:30px;" class="container-fluid">
+            <div  class="row mx-5">
+                <div  class="col-xl-8 col-lg-8 col-12 text-center">
+                    {% for i in title_object  %}
+                    <img id="image_content" class="img-fluid" src="{{i.photo.url}}" alt="">
+                    {% endfor %}
+                    <br><br>
+                    <div style="padding-left:10px" class="row">
+                        <div style="z-index:1;"  class="col-xl-3 col-lg-3 d-none d-xl-block text-start" >
+                            <div style="position: sticky;top:0; top:80px;" >
+                                <p class="fw-bold">Категории</p>
+                            <div style="padding-bottom: 10px;" class="dropdown">
+                                <button style="border-radius: 14px; background-color: rgb(241,241,241);padding:10px;border: none;width: 100%;" class="btn btn-secondary dropdown-toggle text-dark text-start" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Выбрать Категорию
+                                </button>
+                                <ul style="max-height: 300px;overflow-y: scroll;"  class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    {% for i in genre %}
+                                  <li class="hover-genre"><a class="dropdown-item hover-genre" href="{{i.get_absolute_url}}">{{i.tag}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <p class="fw-bold">Все тэги</p>
+                            <div style="position: relative;" >
+                            <div style="padding-bottom: 20px;" class="left-btn text-left text-white">
+                                {% for i in tags_id %}
+                                <a class="btn hover_tag" href="{{i.get_absolute_url}}">{{i}}</a>
+                                {% endfor %}
+                            </div>
+                                {% for i in icon %}
+                                <a href="#"><img style="width: 100%;height: 200%;border-radius: 20px !important;margin-top:20px" class="hover_img" src="{{i.photo.url}}" ></a>
+                                {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 ">
+                           <div class="row text-start">
+                            <div id="text_main4" class="col-12">
+                                {% for i in title_object  %}
+                                <small class="fw-bold">{{i.datePub}}</small>
+                                <br>
+                                <br>
+                                <p style="text-indent: 20px;">{{i.contentMain}}</p>
+                                    <div class="mb-3 text-center">
+                                        {% include 'game/base_video.html' %}
+                                    </div>
+                            <div style="padding-top: 40px;" class="left-btn text-left text-white">
+                            <a class="btn hover_tag" href="{{i.catId.get_absolute_url}}">{{i.catId}}</a>
+                             <a class="btn hover_tag" href="{{i.statId.get_absolute_url}}">{{i.statId}}</a>
+                             </div>
+                                <div id="comment_real" class="row my-5 ">
+                                <div class="col-12">
+                                    <p class="fw-bold">Комментарии</p>
+                                    {% for i in comment %}
+                                     <div style="position: relative;background-color: aqua;border-radius: 20px; padding-left: 25px;padding-right: 25px;padding-top: 25px;padding-bottom: 15px;" class="pane_comment mt-3">
+                                        <p class="fw-bold" style="position: absolute; left: 0;top: 0;padding-left: 25px;">
+                                            {{i.name}}</p>
+                                        <p style="text-indent:25px">{{i.comment}}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                             </div>
+                                {% if user.is_authenticated %}
+                             <form id="comment" style="background-color: rgb(249,249,249); border-radius: 20px;" class="p-3 mt-5 pb-5" method="POST" action="{{ i.get_absolute_url }}">
+                                {% csrf_token %}
+                                <p style="font-size: 30px;" class="fw-bold">Оставь комментарий</p>
+                                <div class="mb-3 mt-3">
+                                    {{form.comment}}
+                                </div>
+                                <button  style="width: 100%; border-radius: 10px; background-color: var(--green_header);" type="submit" class="btn btn-primary ">Оставить комментарий</button>
+                            </form>
+                                {% endif %}
+                           </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="right_menu_main3"  class="col-xl-4 col-lg-4 col-12 d-none d-lg-block" >
+                    <div style="position: sticky;right: 0;top: 0; top:80px;">
+                        <h1 style="font-weight: 700;padding-right: 200px;">{{i.title}}</h1>
+                        <p style="background-color: var(--green_header);border-radius: 20px;padding: 20px;color: white;font-size: 20px;font-weight: 500;padding-right: 10px;width: 80%;">{{i.contentSM}}</p>
+                        {% endfor %}
+                        <div class="pswp-gallery" id="my-gallery">
+                            {% for j in photoTitle %}
+                            <a href="{{j.pathPhoto.url}}" data-pswp-width="1500px" data-pswp-height="1000px" target="_blank">
+                                <img style="border-radius:20px;" class="my-2 me-2" width="200px" height="200px" src="{{j.pathPhoto.url}}" alt=""/>
+                            </a>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</main4>
+{% get_base as title_object %}
+<div style="padding-top:30px"></div>
+{% include 'game/base_title.html' %}
+<div style="padding-bottom:50px"></div>
+ {% endblock %}

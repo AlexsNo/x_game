@@ -1,0 +1,352 @@
+/*Options*/
+.pane_header::-webkit-scrollbar {
+    width: 6px;
+    
+}
+
+.pane_header::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+html{
+    font-style: normal;
+    height: 100%;
+    font-family: Verdana, Calibri;
+    -webkit-text-size-adjust:100%;
+    line-height:1.15}
+    body{margin:0;height: 100%}
+}
+
+img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+html{box-sizing:border-box}
+html *,html :after,html :before{box-sizing:inherit}
+img{vertical-align:middle}a{touch-action:manipulation}
+.content{display:flex}
+.inline-svg{opacity:0}
+
+
+a{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+:root{
+    --green_header: rgb(0,200,151);
+    --green_slide:rgb(237,255,250);
+    --green_footer:rgb(221,255,247);
+    --green_noon:rgb(233,236,239);
+}
+
+/*HEADER*/
+#main_header_up{
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    background-color: #ffffff;
+}
+/*Центральное лого*/
+#logo{
+    color: var(--green_header);
+    font-size: 60px;
+    font-weight: 8000;
+    font-style:oblique;
+}
+/*Левое меню*/
+#left_header{
+    color:var(--green_header);
+    font-size: 25px;
+    display: inline-flex;
+    justify-content: start;
+    padding-left: 30px
+}
+
+.pane_header{
+    background-color: var(--green_slide);
+    position: fixed;
+    display: none;
+    width: 280px;
+    max-height:100%;
+    height:5000px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 1;
+
+}
+
+#header_cancel{
+    font-size: 30px;
+    display: inline-flex;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+#header_pane_post3{
+    background-color: var(--green_slide);
+    position: relative;
+    display: none;
+    width: 260px;
+    height: 300px;
+    top: -10px;
+    left: 0px;
+    right: 0px;
+    border-radius:0 0 10px 10px;
+    margin:0 auto;
+    margin-top: -15px;
+    padding-top: 10px;
+
+}
+
+/*Правое меню*/
+#right_header{
+    text-align: right;
+    font-size: 25px;
+    display: inline-flex;
+    justify-content: end;
+    padding-right: 30px;
+}
+#header_1{
+    padding-right: 15px;
+    z-index: 0;
+}
+
+#header_2{
+    padding-right: 15px;
+    padding-top: 10px;
+    display: inline-flex;
+}
+
+#header_3{
+    display: inline-flex;
+    margin-top:2px;
+}
+#header_4{
+    display: inline-flex;
+    margin-top:2px;
+
+}
+
+#right_header_menu{
+    position: absolute;
+    display: none;
+    right: 10px;
+    top: 50px;
+    width: 170px;
+    height: 80px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 3px 3px 3px rgb(241, 241, 241);
+    opacity: 1;
+    z-index: 4;
+
+}
+
+/*main1*/
+.slider-wrap{
+    border-radius: 1rem !important;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.slider-wrap img, .banners-wrap img, .feat-home-blog-wrap img {
+    transition: 0.3s ease-in-out;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.slide-box-shadow {
+    background-color: rgba(0,0,0,.45);
+    border-radius: 20px;
+    color:white;
+}
+.left {
+    left: 0;
+}
+.bottom {
+    bottom: 0;
+}
+/*main2*/
+.box-main2{
+    left: 0;
+    bottom: 0;
+    background-color: aqua;
+    width: 200px;
+    height: 350px;
+    border-radius: 20px;
+}
+.box-main2 img{
+    object-fit: cover;
+    display: block;
+    transition: 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+/*main3*/
+main3 .container-fluid {
+padding-left:80px !important;
+padding-right:80px !important;
+
+}
+.card-body .btn{
+    float: left;
+    display: block;
+    background-color: var(--green_header);
+    border-radius: 40px;
+    font-size: 12px;
+    margin-left:10px;
+    padding: 0.25rem;
+
+}
+
+
+.card{
+    overflow: hidden;
+}
+.card-body{
+    background-color: rgb(249,249,249);
+
+}
+
+/*footer*/
+
+footer{
+    background-color: var(--green_footer);
+}
+
+#image_content{
+    display: block;
+    text-align: center;
+    object-fit: cover;
+    border-radius: 20px;
+    width: 100%;
+     height: 600px;
+
+
+
+}
+#right_menu_main3 .btn{
+    display: inline-flex;
+    left: 0;
+    background-color: var(--green_header);
+    border-radius: 40px;
+    font-size: 12px;
+    padding: 4px;
+
+
+}
+
+#right_menu_main3{
+    border-radius: 40px;
+    font-size: 12px;
+
+
+}
+
+.left-btn .btn{
+    display: inline-flex;
+    background-color: var(--green_header);
+    border-radius: 40px;
+    font-size: 13px;
+    padding: 4px;
+    padding-right: 15px;
+    text-align: center;
+    padding-left: 15px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#text_main4 p{
+    font-size: 17px;
+}
+
+/*GENRE_SHOW*/
+#category_show{
+
+    padding-right: 130px;
+    padding-left: 130px;
+}
+
+/*CONTACT*/
+#contact input {
+    background-color:rgb(216, 216, 216);
+    width: 85%;
+    border-radius: 15px
+}
+
+#contact textarea {
+    background-color:rgb(216, 216, 216)
+}
+/*PAGINATION*/
+.page-load-status {
+  display: none; /* hidden by default */
+  padding-top: 20px;
+  border-top: 1px solid #DDD;
+  text-align: center;
+  color: #777;
+}
+
+.loader-ellips {
+  font-size: 20px; /* change size here */
+  position: relative;
+  width: 4em;
+  height: 1em;
+  margin: 10px auto;
+}
+
+.loader-ellips__dot {
+  display: block;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.5em;
+  background: #555; /* change color here */
+  position: absolute;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+.loader-ellips__dot:nth-child(1),
+.loader-ellips__dot:nth-child(2) {
+  left: 0;
+}
+.loader-ellips__dot:nth-child(3) { left: 1.5em; }
+.loader-ellips__dot:nth-child(4) { left: 3em; }
+
+@keyframes reveal {
+  from { transform: scale(0.001); }
+  to { transform: scale(1); }
+}
+
+@keyframes slide {
+  to { transform: translateX(1.5em) }
+}
+
+.loader-ellips__dot:nth-child(1) {
+  animation-name: reveal;
+}
+
+.loader-ellips__dot:nth-child(2),
+.loader-ellips__dot:nth-child(3) {
+  animation-name: slide;
+}
+
+.loader-ellips__dot:nth-child(4) {
+  animation-name: reveal;
+  animation-direction: reverse;
+}
+.select_number{
+background-color:rgb(25,103,210) !important;
+}
+
+video{
+  background-size: cover !important;
+}

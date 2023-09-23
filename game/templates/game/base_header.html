@@ -1,0 +1,77 @@
+<header>
+        <div style="padding-bottom:80px" class="container-fluid">
+            <div id="main_header_up" class="row flex-nowrap">
+                <div   class="col-xxl-4 col-lg-4 col-sm-6 mt-3 col-6 ">
+                    <div class="d-flex">
+                        <a onclick="return false" class="mt-2" href="#"><i id="left_header" class="icon-menu"></i></a>
+                        <div class="pane_header">
+                            <div  class="row text-end">
+                                <div class="col-12">
+                                    <a onclick="return false" href="#"><i id="header_cancel" class="icon-cancel"></i></a>
+                                </div>
+                            </div>
+                            <div style="font-size:20px;color:black;margin-top:30px" class="row text-left ps-4 p-3 header_hover">
+                                {% for i in menu %}
+                                    {% if i.title == "Категории" %}
+                                    <div id="cat_hover" style="border-radius:10px;padding-bottom:20px;" class="col-12 mb-1">
+                                        <p style="cursor:pointer;margin:0px;font-size:20px" id="categories">{{i.title}}<i style="float:right" class="icon-down-open"></i> </p>
+                                    </div>
+                                    <div id="header_pane_post3">
+                                    <div class="row ps-3 mt-3">
+                                        {% for i in category_menu %}
+                                        <div style="margin:0px" class="col-12">
+                                            <a style="margin:0 auto;" href="{{i.get_absolute_url}}"><p>{{i}}</p></a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    </div>
+                                    {% else %}
+                                <div style="border-radius:10px" class="col-12 mb-1">
+                                    <a style="border-radius:20px;margin:0 auto" href="{% url i.url_name %}"><p>{{i.title}}</p></a>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-lg-4 col-md-6 d-none d-lg-block text-center">
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'index' %}"><h1  id="logo">ANIME-POINT</h1></a>
+                    </div>
+                </div>
+                <div  id="right_header" class="col-xxl-4 col-lg-4 col-md-6 mt-3 col-6 pe-1">
+                    <div class="d-flex ">
+                        <a href="#"><i id="header_1" class="icon-shopping-bag"></i></a>
+                        <a href="#"><i id="header_2" class="icon-search"></i></a>
+                    <div id="header_3" class="form-check form-switch">
+                        <input id="black_header" class="form-check-input shadow-none" type="checkbox">
+                    </div>
+                        <div style="position: relative;">
+                            <a id="right_header_click" href="#"><i id="header_4" class="icon-user "><i style="font-size: 15px;" class="icon-down-open"></i></i></a>
+                            <div style="font-size:20px;text-align:left" id="right_header_menu">
+                                <div class="row">
+                                    <div class="col-12">
+                                        {% if user.is_authenticated %}
+                                        <br>
+                                        <a href="#">
+                                            <a href="{% url 'logout' %}"><p style="padding-left:15px;display:block;height:40px;margin:0px;border-radius: 0 0 20px 20px"><i class="icon-login"></i>Выход</p></a>
+                                        </a>
+                                        {% else %}
+                                        <a href="#">
+                                            <a href="{% url 'register' %}"><p style="padding-left:15px;display:block;height:40px;margin: 0px;border-radius: 20px 20px 0 0"><i class="icon-user"></i>Регистрация</p></a>
+                                        </a>
+                                        <a href="#">
+                                            <a href="{% url 'login' %}"><p style="padding-left:15px;display:block;height:40px;margin:0px;border-radius: 0 0 20px 20px"><i class="icon-login"></i>Вход</p></a>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</header>

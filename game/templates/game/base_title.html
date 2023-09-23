@@ -1,0 +1,39 @@
+<main3>
+        <div class="container-fluid">
+            <div class="row text-start">
+                <div class="col-12">
+                    <h3 class="font-weight-bold">{{article}}</h3>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container-fluid ">
+                <div id="main3_mas" class="row" data-masonry='{&quot;percentPosition&quot;: true }' style="position: relative" >
+                    {% for i in title_object %}
+                    <div class="col-xl-3 col-md-6 col-12 py-1" style="position:absolute;left:0;bottom:0;">
+                        <div style="margin-top:12px !important;border:none;box-shadow: 2px 5px 5px rgb(243,243,243);"  class="card rounded-5">
+                            <a class="card" href="{{i.get_absolute_url}}"> <img class="img-fluid rounded-top-5 " style="object-fit: cover;width: auto;height: auto;max-height:300px;display:block;" src="{{i.photo.url}}"></a>
+                            <div class="card-body main3_card ">
+                                <small style="padding-left:5px" class="card-title text-dark">{{i.datePub}}</small>
+                                <br>
+                                <h4 style="display:inline-block;"  class="mx-1"><a  href="{{i.get_absolute_url}}">{{i.title}}</a></h4>
+                                <p class="mx-1">{{i.contentSM}}</p>
+                                <p class="mx-1"><a class="h" href="#"><span class="rounded-circle"></span> KELLI SNYDER</a></p>
+                                <a class="btn my-1 text-white hover_tag" href="{{i.catId.get_absolute_url}}">{{i.catId}}</a>
+                                <a class="btn my-1 text-white hover_tag" href="{{i.statId.get_absolute_url}}">{{i.statId}}</a>
+                                {% for obj in tags_post %}
+                                {% for t in obj.idTag.all %}
+                                {% if obj.idBase.pk == i.pk %}
+                                <div style="display:inline-flex;border-radius:20px" class="my-1" >
+                                    <a style="background-color:var(--green_header)" class="btn text-white hover_tag" href="{{ t.get_absolute_url }}">{{t}}</a>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                          </div>
+                    </div>
+                     {% endfor %}
+                </div>
+        </div>
+    </main3>

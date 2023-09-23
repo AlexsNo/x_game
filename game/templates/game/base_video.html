@@ -1,0 +1,47 @@
+{% load game_tags %}
+
+{% get_video  as video %}
+
+<video
+    id="my-video"
+    class="video-js vjs-default-skin "
+    controls
+    preload="metadata"
+    width="840"
+    height="400"
+    style="border-radius:5px;"
+    data-setup='{"playbackRates": [1, 1.5, 2] ,"preload":"auto","fluid":true,"pictureInPictureToggle": false}'>
+    <source id="source_video" src="{{video.title.first.video.url}}#t=0.5" type="video/mp4"/>
+</video>
+
+<div class="container">
+    <br>
+    <div style="background-color:rgb(50,50,50);border-radius:10px;padding-bottom:10px;padding-top:15px" class="row text-start text-white mx-5">
+        <div  class="col-12">
+            {% for i in video.title %}
+            {% if forloop.counter == 1 %}
+            <a style="background-color:rgb(25,25,25);padding-right:15px;height:80%;display:flex-inline;padding-top:1px" onclick="changeVideo('{{i.video.url}}')" class="btn hover_video selected_video select_number">{{forloop.counter}}</a>
+            {% else %}
+            <a style="background-color:rgb(25,25,25);padding-right:15px;height:80%;display:flex-inline;padding-top:1px" onclick="changeVideo('{{i.video.url}}')" class="btn hover_video selected_video">{{forloop.counter}}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+const v = document.getElementById("my-video");
+const s = document.getElementById("source_video");
+var count = 0
+function changeVideo(t) {
+   count++;
+   v.src = t;
+   v.load();
+   v.play();
+}
+$(".selected_video").click(function() {
+$(".selected_video").removeClass("select_number");
+$(this).addClass("select_number");
+});
+
+</script>
