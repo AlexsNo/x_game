@@ -49,8 +49,7 @@ def post_save_image(sender, instance, **kwargs):
     path = os.path.join(BASE_DIR, normPath)
     _delete_file(path)
 
-
-@receiver(pre_save, sender=BaseTitle, )
+@receiver(post_save, sender=BaseTitle, )
 def post_save_url(sender, instance, **kwargs):
     if sender == BaseTitle:
         resul = parser(instance)
