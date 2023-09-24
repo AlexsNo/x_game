@@ -2,8 +2,7 @@ import os
 from datetime import datetime
 
 from django.db import models
-from django.db.models.signals import post_delete
-from django.dispatch import receiver
+
 from django.urls import reverse
 
 from x_game.settings import BASE_DIR
@@ -60,6 +59,8 @@ class BaseTitle(models.Model):
     contentMain = models.TextField()  # All description
     catId = models.ForeignKey('CategoryTitle', on_delete=models.PROTECT, verbose_name="Категория")  # Category title
     statId = models.ForeignKey('StateTitle', on_delete=models.PROTECT, verbose_name="Состояние")
+    url_an = models.CharField(max_length=255, verbose_name="Ссылка на аниме", null=True)
+    url_num = models.IntegerField(verbose_name="Количество серий", null=True)
 
     def __str__(self):
         return self.title
@@ -79,7 +80,7 @@ class BaseTitle(models.Model):
 class CategoryTitle(models.Model):
     category = models.CharField(max_length=255, unique=True, verbose_name="Категория")
     slug = models.SlugField(max_length=50, unique=True, db_index=True, verbose_name="URL")
-    photo = models.ImageField(upload_to=content_file_name, verbose_name="Фото",blank=True)
+    photo = models.ImageField(upload_to=content_file_name, verbose_name="Фото", blank=True)
 
     def __str__(self):
         return self.category
@@ -90,14 +91,15 @@ class CategoryTitle(models.Model):
 
     def get_absolute_url(self):
         return reverse('category_show', kwargs={"cat_id": self.slug, })
+
+
 # Comment for Title
 class CommentTitle(models.Model):
-    name = models.CharField(max_length=50,  verbose_name="Имя")
-    email = models.CharField(max_length=50,  verbose_name="Email")
+    name = models.CharField(max_length=50, verbose_name="Имя")
+    email = models.CharField(max_length=50, verbose_name="Email")
     comment = models.TextField(max_length=600, verbose_name="Комментарий")
     idBase = models.ForeignKey('BaseTitle', on_delete=models.CASCADE, verbose_name="Заголовок Тайтла")
     datePub = models.DateField(auto_now_add=True, verbose_name="Дата публикации")
-
 
     def __str__(self):
         return self.comment
@@ -107,9 +109,10 @@ class CommentTitle(models.Model):
         verbose_name_plural = "Тайтл-Комментарий"
         ordering = ['pk']
 
+
 # Video for Title
 class VideoTitle(models.Model):
-    video = models.FileField(upload_to=content_file_name, verbose_name="Распол. Видео")
+    video = models.CharField(max_length=600, verbose_name="URL")
     idBase = models.ForeignKey('BaseTitle', on_delete=models.CASCADE, verbose_name="Заголовок Тайтла")
 
     def __str__(self):
@@ -133,7 +136,6 @@ class PhotoTitle(models.Model):
         return self.idBase.slug
 
 
-
 # Reviews for Title
 
 
@@ -152,8 +154,8 @@ class ReviewsTitle(models.Model):
 # Tags Title for Title
 class TagsTitle(models.Model):
     idBase = models.ForeignKey('BaseTitle', on_delete=models.CASCADE, verbose_name="Заголовок Тайтла")
-    idGenre = models.ManyToManyField('Genre', verbose_name="Жанр",related_name="genreSet")  # Id tags from BD TagsT
-    idTag = models.ManyToManyField('TagsT', verbose_name="Тэг", blank=True,related_name="tagSet")
+    idGenre = models.ManyToManyField('Genre', verbose_name="Жанр", related_name="genreSet")  # Id tags from BD TagsT
+    idTag = models.ManyToManyField('TagsT', verbose_name="Тэг", blank=True, related_name="tagSet")
 
     class Meta:
         verbose_name = "Тайтл-Тэги"
@@ -161,7 +163,6 @@ class TagsTitle(models.Model):
 
     def __str__(self):
         return self.idBase.title
-
 
 
 # State Title
@@ -178,6 +179,8 @@ class StateTitle(models.Model):
 
     def get_absolute_url(self):
         return reverse('category_show', kwargs={"cat_id": self.slug, })
+
+
 # Genre
 class Genre(models.Model):
     tag = models.CharField(max_length=255, unique=True, verbose_name="Жанр")
